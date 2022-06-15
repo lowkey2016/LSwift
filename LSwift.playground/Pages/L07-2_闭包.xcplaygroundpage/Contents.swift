@@ -8,6 +8,12 @@
 // - 捕获的局部变量/常量就是对象的成员（存储属性）
 // - 组成闭包的函数就是类内部定义的方法
 
+// 下面的闭包 getFn() -> Fn 的 memory layout（个人初步理解，不一定全对）
+// - 通过 swift_allocObject 分配在堆上
+// - 前面 8 个字节存放 meta class 信息
+// - 第二个 8 个字节存放引用计数
+// - 第三个 8 个字节存放 num 的值
+
 typealias Fn = (Int) -> Int
 func getFn() -> Fn {
     var num = 0
@@ -17,6 +23,7 @@ func getFn() -> Fn {
     }
     return plus
 } // 返回的 plus 和 num 形成了闭包
+// 如果闭包捕获的 num 是全局变量，就不需要为闭包在堆上分配空间，返回的是代码段的地址
 
 var fn1 = getFn()
 fn1(1) // 1

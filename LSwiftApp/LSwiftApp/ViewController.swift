@@ -27,6 +27,8 @@ class ViewController: UIViewController {
 //        switchCaseAsm(t)
         
 //        printStructAndClassMemoryLayout()
+        
+        closureTest()
     }
     
     func printStructAndClassMemoryLayout() -> Void {
