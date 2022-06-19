@@ -3,5 +3,6 @@
     <pages>
         <page name='L07-1_闭包表达式'/>
         <page name='L07-2_闭包'/>
+        <page name='L07-3_闭包变量'/>
     </pages>
 </playground>

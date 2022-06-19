@@ -118,6 +118,9 @@ for cls in clses {
 // - 空合并运算符 ?? 使用了 @autoclosure 技术
 // - 有 @autoclosure 和无 @autoclosure 构成了函数重载
 
+// public func ?? <T>(optional: T?, defaultValue: @autoclosure () throws -> T) rethrows -> T
+// public func ?? <T>(optional: T?, defaultValue: @autoclosure () throws -> T?) rethrows -> T?
+
 func getFirstPostive(_ v1: Int, _ v2: Int) -> Int {
     return v1 > 0 ? v1 : v2
 }
@@ -132,7 +135,8 @@ func getFirstPostiveWithClosure(_ v1: Int, _ v2: () -> Int) -> Int? {
 print(getFirstPostiveWithClosure(-4) { 20 }!)
 //print(getFirstPostiveWithClosure(-4, 20)) // compile error
 
-func getFirstPostiveWithAutoClosure(_ v1: Int, _ v2: @autoclosure () -> Int) -> Int? {
+// 有 @autoclosure 和无 @autoclosure 构成了函数重载
+func getFirstPostiveWithClosure(_ v1: Int, _ v2: @autoclosure () -> Int) -> Int? {
     return v1 > 0 ? v1 : v2()
 }
-print(getFirstPostiveWithAutoClosure(-4, 20)!)
+print(getFirstPostiveWithClosure(-4, 20)!)
